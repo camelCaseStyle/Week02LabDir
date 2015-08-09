@@ -10,7 +10,7 @@
 // Implementation given in intList.c
 
 typedef struct IntListRep *IntList;
-
+typedef struct IntListNode * Node;
 // create a new empty IntList
 IntList newIntList();
 
@@ -55,4 +55,7 @@ int IntListOK(IntList);
 // assume that the file is open for writing
 void IntListPrint(FILE *, IntList);
 
+// recursive function to sort the list in ascending order  
+// added by anubhav ashish
+struct IntListNode * sortMylist(struct IntListNode * curr);
 #endif
