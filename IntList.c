@@ -5,8 +5,7 @@
 #include <stdio.h>
 #include "assert.h"
 #include "IntList.h"
-//adding comment to understand git
-//adding another comment to validate use of ssh
+
 // data structures representing IntList
 
 struct IntListNode {
@@ -91,12 +90,50 @@ void IntListInsert(IntList L, int v)
 }
 
 // insert an integer into correct place in a sorted list
-void IntListInsertInOrder(IntList L, int v)
-{
-	// This is INCORRECT
-	IntListInsert(L, v);
-}
+void IntListInsertInOrder(IntList L, int v){
+	IntListInsert(L,v);
+	if( L -> size == 1){
+		return;
+	}
+	Node curr, alpha;
+	//int tmp;
+	curr = L -> first;
+	//get to the second last element in the list;
+	while(curr -> next != L -> last){
+		curr = curr -> next;
+	}
+	if(L -> last -> data > curr -> data){
+		//list is sorted and we can safely return;
+		return;
+	}
+	curr = L -> first;
+	if(L -> last -> data < L -> first -> data){
+		alpha = L -> last;
+		alpha -> next = L -> first;
+		//go to second last element
+		while(curr -> next != L -> last){
+			curr = curr -> next;
+		}
+		curr -> next = NULL;
+		L -> last = curr;
+		L -> first = alpha;
+		return;
+	}
+	int tmp;
+	curr = L -> first;
+	curr = curr -> next;
+	while(curr -> next != NULL){
+		if(L -> last -> data < curr -> data){
+			tmp = L -> last -> data;
+			L -> last -> data = curr -> data;
+			curr -> data = tmp;
+		}
+		curr = curr -> next;
+	}
+	return;
 
+
+}
 // delete first occurrence of v from a list
 // if v does not occur in List, no effect
 void IntListDelete(IntList L, int v)
