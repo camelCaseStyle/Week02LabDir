@@ -13,7 +13,7 @@ struct IntListNode {
 	struct IntListNode *next;
 	            // pointer to node containing next element
 };
-
+//pointer to IntListRep is IntList ADT.
 struct IntListRep {
 	int  size;  // number of elements in list
 	struct IntListNode *first;
@@ -90,6 +90,7 @@ void IntListInsert(IntList L, int v)
 }
 
 // insert an integer into correct place in a sorted list
+
 void IntListInsertInOrder(IntList L, int v){
 	IntListInsert(L,v);
 	if( L -> size == 1){
@@ -132,10 +133,9 @@ void IntListInsertInOrder(IntList L, int v){
 	}
 	return;
 
-
-}
 // delete first occurrence of v from a list
 // if v does not occur in List, no effect
+
 void IntListDelete(IntList L, int v)
 {
 	struct IntListNode *curr, *prev;
